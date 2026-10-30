@@ -1,0 +1,5 @@
+.cp6-agent/
+.cp6-tools/
+.cp6-video/
+**/bin/
+**/obj/

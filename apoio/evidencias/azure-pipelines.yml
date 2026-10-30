@@ -1,0 +1,95 @@
+trigger:
+  branches:
+    include:
+      - main
+      - master
+
+pool:
+  name: CP6-Local
+
+variables:
+  azureServiceConnection: sc-azure-cp6
+  resourceGroup: rg-cp6-petclinic
+  location: eastus
+  planName: plan-cp6-petclinic
+  appName: petclinic-rm561439-cp6
+  artifactName: petclinic
+
+stages:
+  - stage: criarInfra
+    displayName: Provisionar App Service
+    jobs:
+      - job: criaWebApp
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: $(azureServiceConnection)
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                set -euo pipefail
+                az group create -n "$(resourceGroup)" -l "$(location)" --output none
+                az appservice plan create -g "$(resourceGroup)" -n "$(planName)" --is-linux --sku F1 --output none
+                az webapp create -g "$(resourceGroup)" -p "$(planName)" -n "$(appName)" --runtime 'JAVA:17-java17' --output none
+
+  - stage: BuildApp
+    dependsOn: criarInfra
+    jobs:
+      - job: buildWebApp
+        steps:
+          - task: Maven@4
+            displayName: Compilar, testar e empacotar JAR
+            inputs:
+              mavenPomFile: pom.xml
+              goals: clean verify
+              javaHomeOption: JDKVersion
+              jdkVersionOption: '1.17'
+              publishJUnitResults: true
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+          - task: UseDotNet@2
+            displayName: Preparar publicador de cobertura
+            inputs:
+              packageType: sdk
+              version: 8.x
+          - task: PublishCodeCoverageResults@2
+            displayName: Publicar cobertura JaCoCo
+            inputs:
+              summaryFileLocation: $(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml
+              pathToSources: $(System.DefaultWorkingDirectory)/src/main/java
+              failIfCoverageEmpty: true
+          - bash: |
+              set -euo pipefail
+              staging="$(Build.ArtifactStagingDirectory)"
+              if command -v cygpath >/dev/null 2>&1; then staging="$(cygpath -u "$staging")"; fi
+              mkdir -p "$staging"
+              cp target/spring-petclinic-*.jar "$staging/app.jar"
+              printf '%s\n' "$(Build.SourceVersion)" > "$staging/commit.txt"
+            displayName: Preparar pacote e identificar commit
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: $(Build.ArtifactStagingDirectory)
+              ArtifactName: $(artifactName)
+
+  - stage: DeployApp
+    dependsOn: BuildApp
+    jobs:
+      - job: deployWebApp
+        steps:
+          - checkout: none
+          - task: DownloadBuildArtifacts@1
+            inputs:
+              buildType: current
+              downloadType: single
+              artifactName: $(artifactName)
+              downloadPath: $(Pipeline.Workspace)
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: $(azureServiceConnection)
+              appType: webAppLinux
+              appName: $(appName)
+              package: $(Pipeline.Workspace)/$(artifactName)/app.jar
+          - bash: |
+              set -euo pipefail
+              curl --fail --silent --show-error --retry 20 --retry-delay 15 --retry-all-errors --max-time 30 "https://$(appName).azurewebsites.net/" -o pagina.html
+              grep -q 'CP6 - RM561439' pagina.html
+            displayName: Validar HTTP e marcador da versao publicada

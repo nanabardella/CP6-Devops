@@ -1,0 +1,434 @@
+﻿{
+    "releases":  [
+                     {
+                         "pipeline":  "CP6-PriceWhisper-CD",
+                         "release":  3,
+                         "name":  "Release-1",
+                         "reason":  "continuousIntegration",
+                         "url":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_release?releaseId=3\u0026_a=release-summary",
+                         "environments":  [
+                                              {
+                                                  "name":  "Desenvolvimento",
+                                                  "status":  "succeeded"
+                                              }
+                                          ],
+                         "builds":  [
+                                        "15"
+                                    ]
+                     },
+                     {
+                         "pipeline":  "CP6-Roshambo-CD",
+                         "release":  2,
+                         "name":  "Release-2",
+                         "reason":  "continuousIntegration",
+                         "url":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_release?releaseId=2\u0026_a=release-summary",
+                         "environments":  [
+                                              {
+                                                  "name":  "Desenvolvimento",
+                                                  "status":  "succeeded"
+                                              }
+                                          ],
+                         "builds":  [
+                                        "12"
+                                    ]
+                     },
+                     {
+                         "pipeline":  "CP6-Roshambo-CD",
+                         "release":  1,
+                         "name":  "Release-1",
+                         "reason":  "continuousIntegration",
+                         "url":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_release?releaseId=1\u0026_a=release-summary",
+                         "environments":  [
+                                              {
+                                                  "name":  "Desenvolvimento",
+                                                  "status":  "succeeded"
+                                              }
+                                          ],
+                         "builds":  [
+                                        "8"
+                                    ]
+                     }
+                 ],
+    "builds":  [
+                   {
+                       "pipeline":  "CP6-PriceWhisper-CI",
+                       "build":  15,
+                       "status":  "completed",
+                       "result":  "succeeded",
+                       "trigger":  "individualCI",
+                       "commit":  "368cd495cbbfe20c8991454058d5ba255e5b96b1",
+                       "url":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_build/results?buildId=15",
+                       "artifacts":  [
+                                         {
+                                             "name":  "api",
+                                             "downloadUrl":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_apis/build/builds/15/artifacts?artifactName=api\u0026api-version=7.1\u0026%24format=zip"
+                                         }
+                                     ],
+                       "steps":  [
+                                     {
+                                         "name":  "Restore",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Provisionar Oracle e App Service",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Post-job: Checkout cp6-pricewhisper@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "SDK .NET 8",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Publicar artefato api",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Build",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Publish ZIP",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Initialize job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "BuildAndTest",
+                                         "type":  "Job",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Post-job: Checkout cp6-pricewhisper@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Test",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Initialize job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Checkout cp6-pricewhisper@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Finalize Job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "__default",
+                                         "type":  "Stage",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Infra",
+                                         "type":  "Job",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Checkout cp6-pricewhisper@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Finalize Job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     }
+                                 ]
+                   },
+                   {
+                       "pipeline":  "CP6-PetClinic-YAML",
+                       "build":  13,
+                       "status":  "completed",
+                       "result":  "succeeded",
+                       "trigger":  "individualCI",
+                       "commit":  "778320287c40788b0f130cd84e3582d85026df45",
+                       "url":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_build/results?buildId=13",
+                       "artifacts":  [
+                                         {
+                                             "name":  "Code Coverage Report_13",
+                                             "downloadUrl":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_apis/build/builds/13/artifacts?artifactName=Code%20Coverage%20Report_13\u0026api-version=7.1\u0026%24format=zip"
+                                         },
+                                         {
+                                             "name":  "petclinic",
+                                             "downloadUrl":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_apis/build/builds/13/artifacts?artifactName=petclinic\u0026api-version=7.1\u0026%24format=zip"
+                                         }
+                                     ],
+                       "steps":  [
+                                     {
+                                         "name":  "Preparar publicador de cobertura",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Validar HTTP e marcador da versao publicada",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Finalize Job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "BuildApp",
+                                         "type":  "Stage",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "criaWebApp",
+                                         "type":  "Job",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "AzureWebApp",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Post-job: Checkout",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "AzureCLI",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Initialize job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Checkout",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "skipped"
+                                     },
+                                     {
+                                         "name":  "Post-job: Checkout cp6-petclinic@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Checkout cp6-petclinic@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "PublishBuildArtifacts",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Publicar cobertura JaCoCo",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "DownloadBuildArtifacts",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Preparar pacote e identificar commit",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Checkout cp6-petclinic@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "buildWebApp",
+                                         "type":  "Job",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Finalize Job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Provisionar App Service",
+                                         "type":  "Stage",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Finalize Job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Initialize job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "deployWebApp",
+                                         "type":  "Job",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Compilar, testar e empacotar JAR",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "DeployApp",
+                                         "type":  "Stage",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Post-job: Checkout cp6-petclinic@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Initialize job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     }
+                                 ]
+                   },
+                   {
+                       "pipeline":  "CP6-Roshambo-CI",
+                       "build":  12,
+                       "status":  "completed",
+                       "result":  "succeeded",
+                       "trigger":  "individualCI",
+                       "commit":  "675383e7e97e3e7f85dc9befdbf3016964759dcb",
+                       "url":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_build/results?buildId=12",
+                       "artifacts":  [
+                                         {
+                                             "name":  "roshambo",
+                                             "downloadUrl":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_apis/build/builds/12/artifacts?artifactName=roshambo\u0026api-version=7.1\u0026%24format=zip"
+                                         }
+                                     ],
+                       "steps":  [
+                                     {
+                                         "name":  "Initialize job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Post-job: Checkout cp6-roshambo@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Publicar artefato roshambo",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Copiar WAR",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "BuildAndTest",
+                                         "type":  "Job",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Finalize Job",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "__default",
+                                         "type":  "Stage",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Maven: compilar, testar e gerar WAR",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     },
+                                     {
+                                         "name":  "Checkout cp6-roshambo@main to s",
+                                         "type":  "Task",
+                                         "state":  "completed",
+                                         "result":  "succeeded"
+                                     }
+                                 ]
+                   }
+               ],
+    "collectedAt":  "2026-10-30T00:31:57.1517958Z"
+}

@@ -1,0 +1,17 @@
+﻿[
+    {
+        "url":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_git/cp6-roshambo",
+        "id":  "34935d20-e3bd-41a7-9305-45cda736ecc9",
+        "repository":  "cp6-roshambo"
+    },
+    {
+        "url":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_git/cp6-pricewhisper",
+        "id":  "f4061ada-8a0d-4a25-9fb7-b273b54ad92d",
+        "repository":  "cp6-pricewhisper"
+    },
+    {
+        "url":  "https://dev.azure.com/Azure-DevOps-561439/c9d9c297-b65b-487b-adab-92cd6b80a815/_git/cp6-petclinic",
+        "id":  "c12425c4-726a-4f0f-8c08-580be1d83d4d",
+        "repository":  "cp6-petclinic"
+    }
+]
