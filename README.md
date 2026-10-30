@@ -275,4 +275,5 @@ No PetClinic, preserve o prefixo `CP6 - RM561439` da mensagem usada na verifica�
 
 Os códigos têm como base os repositórios indicados nos materiais da disciplina. As referências e os commits usados nesta consolidação estão em `ORIGENS.md`.
 #   C P 6 - D e v o p s  
+ #   C P 6 - D e v o p s  
  
