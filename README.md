@@ -3,6 +3,7 @@
 ### Integração contínua, entrega contínua e aplicações publicadas
 
 **Giovanna Bardella Gomes · RM561439**
+**Erick Takeshi Andrade Nakajune · RM566059** 
 
 Três exercícios de CI/CD, reunindo versionamento no Azure Repos, testes automatizados, publicação de artefatos, provisionamento e deploy no Azure App Service.
 
